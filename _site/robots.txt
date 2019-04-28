@@ -1,3 +1,0 @@
-User-agent: *
-Disallow: images/
-Sitemap: www.frankhampusweslien.com/sitemap.xml

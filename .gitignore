@@ -3,9 +3,9 @@
 # Edit at https://www.gitignore.io/?templates=haskell,vim
 
 ### Hakyll ###
-._site/
-._cache/
-.images/
+_site/
+_cache/
+images/
 
 ### Haskell ###
 dist
