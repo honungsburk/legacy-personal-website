@@ -1,0 +1,44 @@
+name:                blog
+version:             0.1.0.0
+github:              "honungsburk/blog"
+license:             BSD3
+author:              "Frank Hampus Weslien"
+maintainer:          "frankhampusweslien@gmail.com"
+copyright:           "Copyright (c) 2019 Frank Hampus Weslien"
+category:            Web
+
+extra-source-files:
+- README.md
+
+description:         Please see the README on GitHub at <https://github.com/honungsburk/blog#readme>
+
+ghc-options:
+  - -Werror
+  - -W
+  - -Wunused-top-binds
+  - -Wunused-do-bind
+  - -Wcompat
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wredundant-constraints
+  - -Wmissing-signatures
+
+dependencies:
+- base >= 4.7 && < 5
+
+executables:
+  blog:
+    main:                Main.hs
+    source-dirs:         src
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+      # - blog
+    - hakyll
+    - hakyll-sass
+    - hakyll-favicon
+    - hjsmin
+    - bytestring
+    - blaze-markup

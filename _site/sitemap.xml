@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+  xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
+>
+  <url>
+    <loc>http://frankhampusweslien.com</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/indexProjects.html</loc>
+    <lastmod>April 28, 2019</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/indexProjects.html</loc>
+    <lastmod>April 21, 2019</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/content/blog/2019-04-21-Hakyll-reviewed.html</loc>
+    <lastmod>2019-04-21 19:51:11 +0100</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com</loc>
+    <lastmod>December 29, 2018</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/indexProjects.html</loc>
+    <lastmod>August  4, 2018</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/content/writing/poetry/2018-03-06-H%C3%B6stblad.html</loc>
+    <lastmod>2018-03-06 19:02:11 +0100</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/content/writing/poetry/2018-03-06-Birds-of-sorrow.html</loc>
+    <lastmod>2018-03-06 19:02:11 +0100</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/content/writing/poetry/2018-02-01-S-Class.html</loc>
+    <lastmod>2018-02-01 19:51:11 +0100</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/content/writing/poetry/2018-01-22-Purple-Dreams.html</loc>
+    <lastmod>2018-02-20 19:51:11 +0100</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/index.html</loc>
+    <lastmod></lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,50 @@
+<header class="header">
+  <div class="header-nav">
+      <a href="/indexBlog.html">
+        <span class="parallelogram"
+          $if(indexBlog)$
+            id="span-selected"
+          $endif$
+          >Blog</span>
+      </a>
+      <a href="/indexProjects.html">
+        <span class="parallelogram"
+          $if(indexProjects)$
+            id="span-selected"
+          $endif$
+          >Projects</span>
+      </a>
+      <a href="/indexArt.html">
+        <span class="parallelogram"
+          $if(indexArt)$
+            id="span-selected"
+          $endif$
+          >Art</span>
+      </a>
+      <a href="/indexWriting.html">
+        <span class="parallelogram"
+          $if(indexWriting)$
+            id="span-selected"
+          $endif$
+          >Writing</span>
+      </a>
+      <a href="/about.html">
+        <span class="parallelogram"
+          $if(about)$
+            id="span-selected"
+          $endif$
+          >About</span>
+      </a>
+        <span class="parallelogram" id="header-empty-left" ></span>
+  </div>
+  <div class="site-title">
+    <div class="yellowSquare">
+      <h1 class="vertical-align"><a href="/index.html">
+         $siteTitle$
+    </a></h1>
+    </div>
+      <div class="line-sep">
+        <hr>
+      </div>
+  </div>
+</header>

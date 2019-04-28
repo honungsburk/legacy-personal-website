@@ -1,0 +1,33 @@
+@import "normalize";
+@import "footer";
+@import "linesep";
+@import "artPortfolio";
+@import "header";
+@import "about";
+@import "content";
+@import 'post';
+@import 'date';
+
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: $siteText;
+  line-height: $base-line-height;
+  background-color: $siteBackground;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr 6.25em;
+  min-height: 100vh;
+  justify-content: center;
+  grid-gap: 1em;
+  grid-template-areas: "header"
+                       "content-wrap"
+                       "footer"
+}

@@ -1,0 +1,26 @@
+<div class="artPortfolio center-container">
+    $for(contents)$
+    <div class="art-display">
+      $if(title)$
+      <h1>$title$</h1>
+      $endif$
+    <img src="$image$" alt="art" />
+    $partial("templates/contentMeta.html")$ 
+    </div>
+    $endfor$
+</div>
+<div class="pagination center-container">
+    $if(previousPageNum)$
+        <a href="$previousPageUrl$">previous</a>
+    $elif(lastPageUrl)$
+        <a href="$lastPageUrl$">previous</a>
+    $endif$
+    &mdash;
+    page $currentPageNum$ of $numPages$
+    &mdash;
+    $if(nextPageNum)$
+        <a href="$nextPageUrl$">next</a>
+    $elif(firstPageUrl)$
+        <a href="$firstPageUrl$">next</a>
+    $endif$
+</div>

@@ -1,0 +1,95 @@
+@import "variables";
+@import "transform";
+.content-wrap {
+  grid-area: content-wrap;
+  font-size: 1.2rem;
+}
+
+.content-header {
+  display: -webkit-flex; /* Safari */
+  -webkit-justify-content: center; /* Safari 6.1+ */
+  display: flex;
+  justify-content: center;
+}
+
+
+.parallelogram {
+    @include transform(skew(-9deg));
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    display: inline-block;
+}
+
+
+.content-text {
+  margin: 0 auto;
+  width: 40em;
+  max-width: 95vw;
+}
+
+.content-projects{
+  width: 80vw;
+  margin: 0 auto; //centering
+}
+
+.content-project{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "project-left project-right";
+  margin-bottom: 5em;
+  padding-bottom: 5em;
+  border-bottom: 5px solid $siteBlack;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.content-project-header{
+    margin: 0;
+}
+
+.content-project-left {
+  grid-area: project-left;
+  margin: 0 auto;
+  width: 40rem;
+}
+
+.content-project-right {
+  grid-area: project-right;
+  padding: 0 auto;
+}
+
+.project-status{
+    color: $siteBackground;
+}
+
+.inProgress{
+    background-color: $siteDarkYellow;
+}
+
+.finnished{
+    background-color: $siteDarkGreen;
+}
+
+@media screen and (max-width: $BreakPointMedium) {
+.content-text {
+  margin-left: 15%;
+  }
+}
+
+@media screen and (max-width: $BreakPointSmall) {
+.content-text {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.content-header {
+  margin-left: auto;
+}
+}
+
+
+

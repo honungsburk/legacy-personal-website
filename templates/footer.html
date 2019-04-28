@@ -1,0 +1,21 @@
+<footer>
+  $if(twitterUser)$
+    <a href="https://twitter.com/$twitterUser$"><i id="social-tw" class="fa fa-twitter social"></i></a>
+  $endif$
+  $if(redditUser)$
+    <a href="https://www.reddit.com/user/$redditUser$ "><i id="social-rd" class="fa fa-reddit social"></i></a>
+  $endif$
+  $if(youtube)$
+    <a href="https://youtube.com/$youtube$"><i id="social-yt" class="fa fa-youtube social"></i></a>
+  $endif$
+  $if(email)$
+    <a href="mailto:$email$"><i id="social-el" class="fa fa-envelope social"></i></a>
+  $endif$
+  $if(gitlabUser)$
+    <a href="https://gitlab.com/$gitlabUser$"><i id="social-gl" class="fa fab fa-gitlab social"></i></a>
+  $endif$
+  $if(githubUser)$
+    <a href="https://github.com/$githubUser$"><i id="social-gl" class="fa fab fa-github social"></i></a>
+  $endif$
+    <a href="/atom.xml"><i id="social-gl" class="fa fab fa-rss social"></i></a>
+</footer>

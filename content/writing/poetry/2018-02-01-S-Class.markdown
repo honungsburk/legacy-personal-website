@@ -1,0 +1,15 @@
+---
+title:  "S-Class"
+date:   2018-02-01 19:51:11 +0100
+tags:
+  - poetry
+language: English
+---
+He who squared the circle,  
+legend among his peers.  
+The retrofitted tale,  
+of how a man outgrew his fears.  
+Carrying the weight of future,  
+haunted by its ghost.  
+Will this S-class hero  
+ever walk the immortal’s soil?

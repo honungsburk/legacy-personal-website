@@ -1,0 +1,26 @@
+@import "transform";
+@import "transition";
+@import "variables";
+
+footer {
+  height: 6.25rem;
+  line-height: 6.25rem;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 2rem;
+  grid-area: footer;
+}
+
+/* Social media buttons*/
+
+.social {
+  color: $siteBlack;
+  font-size: 2rem;
+  @include scale(0.8);
+
+  @include transition-duration(0.5s);
+
+  &:hover {
+  @include scale(1.1);
+  }
+}

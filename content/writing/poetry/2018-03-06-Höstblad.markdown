@@ -1,0 +1,16 @@
+---
+title:  "Höstblad"
+date:   2018-03-06 19:02:11 +0100
+tags:
+  - poetry
+language: Swedish
+---
+Är inte höstens blad de allra vackrast?  
+Ett dramatiskt slut på en mättad grönska,  
+en kort tids färg, ett sista rassel,  
+tills varje blad somnat under evig tystnad.  
+Vad gömmer sig där bakom de tunna liven?  
+Vad håller allting fast när vinden viner?  
+Att så späda ting vägrar tyngas ner,  
+tills de rycks i en av höstens pustar,  
+                    å aldrig syns nå’ mer.  

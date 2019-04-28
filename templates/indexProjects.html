@@ -1,0 +1,26 @@
+<div class="content-projects">
+$for(contents)$
+<div class="content-project">
+  <div class="content-project-left">
+  <h1 class="content-project-header">$title$</h1>
+    $if(status)$
+    <span>Status: <span class="project-status parallelogram $status$">$status$</span> </span>
+    $endif$
+
+    $body$
+  
+    $partial("templates/tags.html")$
+  
+    $if(link)$
+    <a class="project-link" href="$link$">$linkText$</a>
+    $endif$
+  </div>
+    $if(embed)$
+  <div class="content-project-right ">
+    <embed src="$embed$">
+  </div>
+    $endif$
+</div>
+$endfor$
+</div>
+

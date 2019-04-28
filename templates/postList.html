@@ -1,0 +1,13 @@
+$for(contents)$
+  <a class="post-link" href="$url$">
+    <div class="post">
+      <h2>$title$</h2>
+      $if(teaser)$
+        <div class="excerpt">
+        $teaser$
+        </div>
+      $endif$
+      $partial("templates/contentMeta.html")$
+    </div>
+  </a>
+$endfor$

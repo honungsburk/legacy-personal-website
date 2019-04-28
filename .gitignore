@@ -1,0 +1,55 @@
+
+# Created by https://www.gitignore.io/api/haskell,vim
+# Edit at https://www.gitignore.io/?templates=haskell,vim
+
+### Hakyll ###
+._site/
+._cache/
+.images/
+
+### Haskell ###
+dist
+dist-*
+cabal-dev
+*.o
+*.hi
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+.hpc
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+*.prof
+*.aux
+*.hp
+*.eventlog
+.stack-work/
+cabal.project.local
+cabal.project.local~
+.HTF/
+.ghc.environment.*
+
+### Vim ###
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+TAGS
+
+# Persistent undo
+[._]*.un~
+
+# End of https://www.gitignore.io/api/haskell,vim
