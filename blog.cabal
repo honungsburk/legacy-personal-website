@@ -1,0 +1,45 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: a09cb53f32e144849ac5f999cdc1f896682f405b7581d4c0f7133713ac72cd7c
+
+name:           blog
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/honungsburk/blog#readme>
+category:       Web
+homepage:       https://github.com/honungsburk/blog#readme
+bug-reports:    https://github.com/honungsburk/blog/issues
+author:         Frank Hampus Weslien
+maintainer:     frankhampusweslien@gmail.com
+copyright:      Copyright (c) 2019 Frank Hampus Weslien
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/honungsburk/blog
+
+executable blog
+  main-is: Main.hs
+  other-modules:
+      Context
+      Rules
+      Paths_blog
+  hs-source-dirs:
+      src
+  ghc-options: -Werror -W -Wunused-top-binds -Wunused-do-bind -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -Wmissing-signatures -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , blaze-markup
+    , bytestring
+    , hakyll
+    , hakyll-favicon
+    , hakyll-sass
+    , hjsmin
+  default-language: Haskell2010

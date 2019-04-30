@@ -18,7 +18,7 @@ imageRules = match "images/*" $ do
 
 -- | You should only have one .ico file in images
 favIconRule :: Rules ()
-favIconRule = faviconsRules "images/TheCrimsonKingLogo.svg"
+favIconRule = faviconsRules "images/FrankHampusWeslienLogo.svg"
 
 --------------------------------------------------------------------------------
 
@@ -93,17 +93,17 @@ staticCopyRule = match (fromList ["robots.txt"]) $ do
 --------------------------------------------------------------------------------
 
 aboutRules :: Rules ()
-aboutRules = matchPandocRule "about.markdown" baseCtx
+aboutRules = matchPandocRule "about.markdown" ctx
     [ "templates/about.html"
     , "templates/default.html"
     ]
+        where ctx = baseCtx <> trueField "about"
 
 pageNotFoundRules :: Rules ()
 pageNotFoundRules = matchPandocRule "404.html" baseCtx
     [ "templates/contentWriting.html"
     , "templates/default.html"
     ]
-
 
 matchPandocRule :: Pattern -- ^ pattern of what is to be created
           -> Context String -- ^ context for the templates
@@ -121,13 +121,6 @@ createRules :: Identifier -> Compiler (Item String) -> Rules ()
 createRules id co = create [id] $ do
     route idRoute
     compile co
-
-indexRules :: Rules ()
-indexRules = createRules "index.html" $ do
-        baseItem <- makeItem ""
-        loadAndApplyTemplates baseItem indexCtx
-           [ "templates/default.html"
-           ]
 
 --------------------------------------------------------------------------------
 
@@ -147,7 +140,7 @@ indexTextRules id pattern getCtx tags = createRules id $ do
 
 indexBlogRules :: Tags -> Rules ()
 indexBlogRules =
-    indexTextRules "indexBlog.html" "content/blog/*" indexBlogCtx
+    indexTextRules "index.html" "content/blog/*" indexBlogCtx
 
 
 indexWritingRules :: Tags -> Rules ()

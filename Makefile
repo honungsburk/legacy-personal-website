@@ -22,4 +22,26 @@ clean:
 ghcid:
 	@ ghcid --command "stack ghci blog:exe:blog --ghci-options=-fno-code"
 
-.PHONY: all build watch check clean ghcid blog
+publish:
+	@ git stash 				# Stash uncommited changes
+	@ git checkout development  # Make sure we are on the correct branch
+	@ stack exec -- blog clean  # Make a clean build
+	@ stack exec -- blog build
+	@ git fetch --All 		    # Make sure we have the branch to checkout to
+	  git checkout -b master --track origin/master
+	# we use rsync to auto remove deleted files
+	rsync -a --filter='P _site/'      \
+			 --filter='P _cache/'     \
+			 --filter='P .git/'       \
+			 --filter='P .gitignore'  \
+			 --filter='P .stack-work' \
+			 --delete-excluded        \
+			 _site/ .
+	@ git add -A
+	@ git commit -m "Publish."
+	  git push origin master:master
+	@ git checkout development 	# cleanup
+	@ git branch -D master
+	@ git stash pop
+
+.PHONY: all build watch check clean ghcid blog publish

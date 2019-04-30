@@ -13,7 +13,7 @@
   margin-bottom: 0.5em;
 
   &:hover {
-    border-color: $siteDarkred;
+    border-color: $siteDarkYellow;
   }
 
   h2 {
@@ -21,37 +21,4 @@
     -webkit-margin-before: 0;
     margin: 0;
   }
-}
-
-.content-meta {
-    .tags {
-        grid-area: footer-tags;
-    }
-    .date {
-        grid-area: footer-date;
-    }
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas: "footer-tags footer-date";
-    grid-gap: 0 1em;
-}
-
-// move tag to own file?
-.tag {
-    display: inline-block;
-    cursor: pointer;
-    @include transform(skew(-12deg));
-    padding: 0 0.2em;
-    margin: 0 0.2em;
-    background: $siteBlack;
-    color: $siteBackground;
-    &:hover {
-        text-decoration: underline;
-    }
-}
-
-@media screen and (max-width: $BreakPointMedium) {
- .date {
-   margin-right: 20px;
- }
 }

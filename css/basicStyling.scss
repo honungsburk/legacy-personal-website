@@ -1,7 +1,5 @@
 @import "normalize";
 @import "footer";
-@import "linesep";
-@import "artPortfolio";
 @import "header";
 @import "about";
 @import "content";
@@ -29,5 +27,5 @@ body {
   grid-gap: 1em;
   grid-template-areas: "header"
                        "content-wrap"
-                       "footer"
+                       "footer";
 }

@@ -1,10 +1,10 @@
-<div class="artPortfolio center-container">
+<div class="art-content">
     $for(contents)$
     <div class="art-display">
       $if(title)$
       <h1>$title$</h1>
       $endif$
-    <img src="$image$" alt="art" />
+    <img src="$image$" alt="$alt$" />
     $partial("templates/contentMeta.html")$ 
     </div>
     $endfor$

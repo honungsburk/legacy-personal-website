@@ -1,7 +1,7 @@
 ---
 title: "The Crimson King"
 status: "finnished"
-embed: /images/TheCrimsonKingLogo.svg
+logo: /images/TheCrimsonKingLogo.svg
 url: "/indexProjects.html"
 link: ""
 tags:

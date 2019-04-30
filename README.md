@@ -6,21 +6,20 @@ My personal blog built with hakyll.
 
 - [ x ] Add feeds
 - [ x ] Add sitemap
-- [  ] about.rst???
 - [  ] Add correct metadata for feeds
   - [  ] (add logo)[https://snook.ca/archives/rss/add_logo_to_feed] 
   - [  ] Remove art???
-- [  ] Fix index page
-- [  ] dynamic css
+- [ x ] Fix index page
+- [ x ] dynamic css
 - [  ] deploy command
 - [  ] refactor css
-- [  ] fix project page
-- [  ] fix About
+- [ x ] fix project page
+- [ x ] fix About
 - [  ] Hakyll reviwed
 - [  ] The Crimson King
-- [  ] Proper art image alt tags
-- [  ] More Art
-- [  ] Site logo
+- [ x ] Proper art image alt tags
+- [ x ] More Art
+- [ x ] Site logo
 - [ x ] favicon.ico???
 - [  ] put all haskell code in one file
 

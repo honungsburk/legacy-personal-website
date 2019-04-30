@@ -19,7 +19,6 @@ main = hakyll $ do
     projectRules
     artRules
     -- index pages
-    indexRules
     indexBlogRules tags
     indexWritingRules tags
     indexProjectsRules tags

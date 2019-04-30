@@ -1,12 +1,15 @@
-<div class="content-projects">
 $for(contents)$
-<div class="content-project">
-  <div class="content-project-left">
-  <h1 class="content-project-header">$title$</h1>
+<div class="content-project content-text">
+  <div class="content-project-header">
+    <h1>$title$</h1>
+    $if(logo)$
+    <embed src="$logo$" viewBox="0 0 100 100" class="project-logo"> </embed>
+    $endif$
     $if(status)$
     <span>Status: <span class="project-status parallelogram $status$">$status$</span> </span>
     $endif$
-
+  </div>
+  <div class="content-project-body">
     $body$
   
     $partial("templates/tags.html")$
@@ -15,12 +18,6 @@ $for(contents)$
     <a class="project-link" href="$link$">$linkText$</a>
     $endif$
   </div>
-    $if(embed)$
-  <div class="content-project-right ">
-    <embed src="$embed$">
-  </div>
-    $endif$
 </div>
 $endfor$
-</div>
 
