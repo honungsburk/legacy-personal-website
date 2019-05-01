@@ -27,10 +27,10 @@ publish:
 	@ git checkout development  # Make sure we are on the correct branch
 	@ stack exec -- blog clean  # Make a clean build
 	@ stack exec -- blog build
-	@ git fetch --All 		    # Make sure we have the branch to checkout to
-	  git checkout -b master --track origin/master
+	@ git fetch --all 		    # Make sure we have the branch to checkout to
+	@ git checkout -b master 
 	# we use rsync to auto remove deleted files
-	rsync -a --filter='P _site/'      \
+	@ rsync -a --filter='P _site/'      \
 			 --filter='P _cache/'     \
 			 --filter='P .git/'       \
 			 --filter='P .gitignore'  \

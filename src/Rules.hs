@@ -200,7 +200,7 @@ artPortfolio tags = do
 tagPagesRules :: Tags -> Rules ()
 tagPagesRules tags = tagsRules tags $ \tag pattern -> do
     let title = "\"" ++ tag ++ "\""
-    route idRoute
+    route . constRoute $ "tagPages/" ++ tag ++ ".html"
     compile $ do
         content <- recentFirst =<< loadAll pattern
         let ctx = constField "title" title
