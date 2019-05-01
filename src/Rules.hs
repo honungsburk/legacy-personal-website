@@ -189,7 +189,7 @@ artPortfolio tags = do
             art <- recentFirst =<< loadAll pattern  -- Should be just one
             let paginateCtx = paginateContext artPortfolio pageNum
             let ctx         = indexArtCtx tags paginateCtx art
-            item <- makeItem ""
+            item <- makeItem "" >>= saveSnapshot "contentSnap"
             loadAndApplyTemplates item ctx
                 [ "templates/indexArt.html"
                 , "templates/default.html"
@@ -223,10 +223,12 @@ rssRule = createRules "rss.xml" $ feed renderRss
 
 feed :: (FeedConfiguration -> Context String -> [Item String] -> Compiler (Item String))
      -> Compiler (Item String)
-feed feedRender =
-    loadAllSnapshots "content/**" "contentSnap"
-        >>= fmap (take 10) . recentFirst
-        >>= feedRender (feedConfiguration "All content") feedCtx
+feed feedRender = do
+    blogPosts <- loadAllSnapshots "content/blog/**" "contentSnap"
+    writings <- loadAllSnapshots "content/writing/**" "contentSnap"
+    projects <- loadAllSnapshots "content/projects/**" "contentSnap"
+    content <- fmap (take 10) . recentFirst $ blogPosts ++ writings ++ projects
+    feedRender (feedConfiguration "All content") feedCtx content
 
 feedConfiguration :: String -> FeedConfiguration
 feedConfiguration title = FeedConfiguration
@@ -245,23 +247,15 @@ feedCtx = mconcat
 
 --------------------------------------------------------------------------------
 
--- | index.html is not included as it has it is defined directly in the sitemap
--- with a higher priority
-singlePages :: [Identifier]
-singlePages =
-    [ "about.html"
-    , "indexArt"
-    , "indexBlog"
-    , "indexWriting"
-    , "indexProjects"
-    ]
-
 -- |
 -- The urls are not absolut to amke the site easier to crawl
 sitemapRule :: Rules ()
 sitemapRule = createRules "sitemap.xml" $ do
-    content <- recentFirst =<< loadAll "content/**"
-    pages <- loadAll $ fromList singlePages
-    let ctx =  sitemapCtx $ content <> pages
+    writings <- loadAll "content/writing/**"
+    art <- loadAllSnapshots "content/art/*.html" "contentSnap"
+    blogposts <- loadAll "content/blog/**"
+    about <- load "about.markdown"
+    content <- recentFirst (writings ++ blogposts)
+    let ctx =  sitemapCtx $ about : content ++ art
     makeItem ""
         >>= loadAndApplyTemplate "templates/sitemap.xml" ctx

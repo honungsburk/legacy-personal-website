@@ -13,7 +13,9 @@
   margin-bottom: 0.5em;
 
   &:hover {
-    border-color: $siteDarkYellow;
+      h2 {
+          text-decoration: underline;
+      }
   }
 
   h2 {
@@ -21,4 +23,15 @@
     -webkit-margin-before: 0;
     margin: 0;
   }
+}
+
+p a {
+    color: $siteDarkYellow;
+    &:link:active {
+        color: $siteRed;
+    }
+    &:visited:active {
+        color: $siteDarkred;
+
+    }
 }

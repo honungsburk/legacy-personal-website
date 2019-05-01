@@ -126,6 +126,17 @@
     }
 }
 
+.project-link {
+    background-color: $siteBlack;
+    color: $siteBackground;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 10px;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
 .project-status{
     color: $siteBackground;
 }

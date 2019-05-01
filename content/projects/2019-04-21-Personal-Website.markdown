@@ -4,8 +4,6 @@ author: "Frank Hampus Weslien"
 status: "finnished"
 logo: /images/FrankHampusWeslienLogo.svg
 url: "/indexProjects.html"
-link: ""
-linkText: ""
 tags: 
   - haskell
   - hakyll

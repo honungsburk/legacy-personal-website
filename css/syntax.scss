@@ -1,0 +1,59 @@
+@import 'variables';
+// taken from https://raw.github.com/jaspervdj/hakyll/master/web/css/syntax.css
+// These tokens are marked up in Pandoc by the `highlighting-kate` package
+
+code {
+  border: none;
+}
+
+pre {
+  code {
+    background-color: inherit;
+    border: inherit;
+    overflow: auto;
+    max-width: 50em; 
+    }
+}
+
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode, table.sourceCode pre {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    border: none;
+}
+
+td.lineNumbers {
+    border-right: 1px solid #AAAAAA;
+    text-align: right;
+    color: #AAAAAA;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+
+td.sourceCode {
+    padding-left: 5px;
+}
+
+$comment: #A57800;
+$string: #c47911;
+$number: $siteRed;
+$keyword: $siteDarkred;
+
+
+.sourceCode, code {
+  color: $siteBlack;
+
+  .kw { color: $keyword; }
+  .bn { color: $number; }
+  .fl { color: $number; }
+  .ch { color: $string; }
+  .st { color: $string; }
+  .co { color: $comment; }
+  .ot { color: $siteDarkred; }
+  .al { color: #CB4B16; font-weight: bold; }
+  .fu { color: $keyword; }
+  .er { color: #D30102; font-weight: bold; }
+}
+

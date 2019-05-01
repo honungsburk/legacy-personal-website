@@ -12,6 +12,21 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>$root$/indexArt.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>$root$/indexWriting.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>$root$/indexProjects.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
 $for(contents)$
   <url>
     <loc>$root$$url$</loc>
