@@ -1,5 +1,5 @@
 ---
-image: "/images/cliffOcean.jpg"
+image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e83a41f0-1127-4c89-9388-cca19c024bde/dd5zapw-d8cc2375-6e9d-478b-b79c-16a1f7d16a19.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2U4M2E0MWYwLTExMjctNGM4OS05Mzg4LWNjYTE5YzAyNGJkZVwvZGQ1emFwdy1kOGNjMjM3NS02ZTlkLTQ3OGItYjc5Yy0xNmExZjdkMTZhMTkuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.RySKt7CvudNjLS54-gAH3djWtAquBw_oGYXSKebyFZM"
 alt: "A rock facing the ocean"
 tags: 
   - landscape
