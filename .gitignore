@@ -5,7 +5,6 @@
 ### Hakyll ###
 _site/
 _cache/
-images/
 
 ### Haskell ###
 dist
