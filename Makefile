@@ -27,8 +27,8 @@ publish:
 	@ git checkout development  # Make sure we are on the correct branch
 	@ stack exec -- blog clean  # Make a clean build
 	@ stack exec -- blog build
-	@ git fetch --all 		    # Make sure we have the branch to checkout to
-	@ git checkout -b master 
+	@ git fetch -all 
+	@ git checkout master 
 	# we use rsync to auto remove deleted files
 	@ rsync -a --filter='P _site/'      \
 			 --filter='P _cache/'     \
@@ -39,9 +39,8 @@ publish:
 			 _site/ .
 	@ git add -A
 	@ git commit -m "Publish."
-	  git push origin master:master
+	@ git push origin
 	@ git checkout development 	# cleanup
-	@ git branch -D master
 	@ git stash pop
 
 .PHONY: all build watch check clean ghcid blog publish
