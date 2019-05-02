@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created using Krita: http://krita.org -->
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:krita="http://krita.org/namespaces/svg/krita"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    width="104.64pt"
+    height="104.4pt"
+    viewBox="0 0 104.64 104.4">
+<defs/>
+<ellipse id="shape0" transform="matrix(1.00000000583287 0 0 0.999999985384302 2.64000001539879 14.9502941571989)" rx="44.16" ry="43.56" cx="44.16" cy="43.56" fill="#e19c18" stroke="#262626" stroke-width="4.8" stroke-linecap="square" stroke-linejoin="bevel"/><path id="shape2" transform="matrix(1.00000000583287 0 0 0.999999985384302 37.4018836978093 57.3387381882913)" fill="#e19c18" stroke="#e19c18" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="2" stroke-dasharray="6,12" d="M0 0L19.1181 0"/><ellipse id="shape01" transform="matrix(1.00000000583287 0 0 0.999999985384302 13.9200000811936 2.87999995790679)" rx="44.16" ry="43.56" cx="44.16" cy="43.56" fill="none" stroke="#262626" stroke-width="4.8" stroke-linecap="square" stroke-linejoin="bevel"/><path id="shape1" transform="matrix(1.00000000583287 0 0 0.999999985384302 45.234158284595 8.77254576164742)" fill="none" stroke="#262626" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="2" d="M0 0L0.689545 75.1604"/><path id="shape01" transform="matrix(1.00000004672887 0 0 0.999999994713462 71.147654860669 8.34541215567037)" fill="none" stroke="#262626" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="2" d="M0 0L0.689545 75.1604"/><path id="shape21" transform="matrix(1.00000000583287 0 0 0.999999985384302 48.6818837636041 44.858738370695)" fill="none" stroke="#262626" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="2" d="M0 0L18.6177 0"/>
+</svg>
