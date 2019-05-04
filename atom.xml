@@ -8,164 +8,359 @@
         <name>Frank Hampus Weslien</name>
         <email>frankhampusweslien@gmail.com</email>
     </author>
-    <updated>2019-05-01T00:00:00Z</updated>
+    <updated>2019-05-04T00:00:00Z</updated>
     <entry>
-    <title>Hakyll Reviewed</title>
-    <link href="http://frankhampusweslien.com/content/blog/2019-05-01-Hakyll-Reviewed.html" />
-    <id>http://frankhampusweslien.com/content/blog/2019-05-01-Hakyll-Reviewed.html</id>
-    <published>2019-05-01T00:00:00Z</published>
-    <updated>2019-05-01T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>During Easter I finally found some time to finish my website: fix the styling, html templates, and all the rest. But during my “involuntary” break of little more over a year I found myself scratching me head looking through my Jekyll project. <em>Oh my…</em> I thought to myself. And seeing as I’ve been toying around with Haskell I promptly decided to rebuild the entire thing using Hakyll instead. Brilliant.</p>
-<!--more-->
-<p>Now, Hakyll takes a different approach to static site generation compared to something like Jekyll. Instead of being a ready made tool it’s a library that lets you build own generator. Of course, that means that it is a bit more complex. Trading convince for power.</p>
-<p>Like Jekyll you have templates, CSS, and your posts or other content you wish to display. Just like normal. But you also have code to define the behavior of your static site generator. You have a main function like so</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb1-1" title="1"><span class="ot">main ::</span> <span class="dt">IO</span> ()</a>
-<a class="sourceLine" id="cb1-2" title="2">main <span class="fu">=</span> hakyll <span class="fu">$</span> <span class="kw">do</span></a>
-<a class="sourceLine" id="cb1-3" title="3">    cssRules</a>
-<a class="sourceLine" id="cb1-4" title="4">    tagPagesRules</a>
-<a class="sourceLine" id="cb1-5" title="5">    <span class="fu">...</span></a></code></pre></div>
-<p>after which you define a set of rules. Rules can be arbitrarily complex but are often very simple, and thanks to Haskell being so terse you often don’t need many lines of code. Here are two examples.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb2-1" title="1"></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="co">-- | A simple rule that copies all .css files in </span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">--   the css folder and compress them</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="ot">cssRules ::</span> <span class="dt">Rules</span> ()</a>
-<a class="sourceLine" id="cb2-5" title="5">cssRules <span class="fu">=</span> match <span class="st">&quot;css/*.css&quot;</span> <span class="fu">$</span> <span class="kw">do</span></a>
-<a class="sourceLine" id="cb2-6" title="6">    route   idRoute</a>
-<a class="sourceLine" id="cb2-7" title="7">    compile compressCssCompiler</a>
-<a class="sourceLine" id="cb2-8" title="8"></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">-- | And here an example of a more complex rule </span></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co">--   that generates tag pages.</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="ot">tagPagesRules ::</span> <span class="dt">Tags</span> <span class="ot">-&gt;</span> <span class="dt">Rules</span> ()</a>
-<a class="sourceLine" id="cb2-12" title="12">tagPagesRules tags <span class="fu">=</span> tagsRules tags <span class="fu">$</span> \tag <span class="kw">pattern</span> <span class="ot">-&gt;</span> <span class="kw">do</span></a>
-<a class="sourceLine" id="cb2-13" title="13">    <span class="kw">let</span> title <span class="fu">=</span> <span class="st">&quot;\&quot;&quot;</span> <span class="fu">++</span> tag <span class="fu">++</span> <span class="st">&quot;\&quot;&quot;</span></a>
-<a class="sourceLine" id="cb2-14" title="14">    route idRoute</a>
-<a class="sourceLine" id="cb2-15" title="15">    compile <span class="fu">$</span> <span class="kw">do</span></a>
-<a class="sourceLine" id="cb2-16" title="16">        content <span class="ot">&lt;-</span> recentFirst <span class="fu">=&lt;&lt;</span> loadAll <span class="kw">pattern</span></a>
-<a class="sourceLine" id="cb2-17" title="17">        <span class="kw">let</span> ctx <span class="fu">=</span> constField <span class="st">&quot;title&quot;</span> title</a>
-<a class="sourceLine" id="cb2-18" title="18">                <span class="fu">&lt;&gt;</span> tagPageCtx tags content</a>
-<a class="sourceLine" id="cb2-19" title="19">        item <span class="ot">&lt;-</span> makeItem <span class="st">&quot;&quot;</span></a>
-<a class="sourceLine" id="cb2-20" title="20">        loadAndApplyTemplates item ctx</a>
-<a class="sourceLine" id="cb2-21" title="21">            [ <span class="st">&quot;templates/tagPage.html&quot;</span></a>
-<a class="sourceLine" id="cb2-22" title="22">            , <span class="st">&quot;templates/default.html&quot;</span></a>
-<a class="sourceLine" id="cb2-23" title="23">            ]</a>
-<a class="sourceLine" id="cb2-24" title="24"></a>
-<a class="sourceLine" id="cb2-25" title="25"><span class="ot">tagPageCtx ::</span> <span class="dt">Tags</span></a>
-<a class="sourceLine" id="cb2-26" title="26">           <span class="ot">-&gt;</span> [<span class="dt">Item</span> <span class="dt">String</span>] <span class="co">-- ^ content sharing the same tag</span></a>
-<a class="sourceLine" id="cb2-27" title="27">           <span class="ot">-&gt;</span> <span class="dt">Context</span> <span class="dt">String</span></a>
-<a class="sourceLine" id="cb2-28" title="28">tagPagesCtx <span class="fu">=</span> <span class="fu">...</span></a></code></pre></div>
-<p>That said, if you want a highly customized website you might have to write a bit more. In fact this <a href="http://frankhampusweslien.com">website</a> is 322 loc. Which, when I come to think about it, might be a few more lines then I would like. Luckily however the code you write when defining your rules usually isn’t to complex and having such direct access to the internals lends Hakyll to very easily be modified. Adding an extension is trivial. One example would be supporting Sass, seeing as Hakyll itself doesn’t ship with it. On Hackage we can find the convenient hakyll-sass library that defines functions to do what we want.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">import</span> <span class="dt">Hakyll.Web.Sass</span> (sassCompiler)</a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="ot">scssRules ::</span> <span class="dt">Rules</span> ()</a>
-<a class="sourceLine" id="cb3-4" title="4">scssRules <span class="fu">=</span> match <span class="st">&quot;css/*.scss&quot;</span> <span class="fu">$</span> <span class="kw">do</span></a>
-<a class="sourceLine" id="cb3-5" title="5">        route <span class="fu">$</span> setExtension <span class="st">&quot;css&quot;</span></a>
-<a class="sourceLine" id="cb3-6" title="6">        <span class="kw">let</span> compressCssItem <span class="fu">=</span> <span class="fu">fmap</span> compressCss</a>
-<a class="sourceLine" id="cb3-7" title="7">        compile (compressCssItem <span class="fu">&lt;$&gt;</span> sassCompiler)</a></code></pre></div>
-<p>And we are done.</p>
-<p>However, for all its brilliance Hakyll do fall short in one area: documentation. Simply put, there isn’t that much of it. There is enough but sometimes you stumble upon a piece of undocumented code leaving you to scratch your head. The function bellow was used to generate the html of the tags scattered around the website.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb4-1" title="1"><span class="ot">tagsFieldWith ::</span> (<span class="dt">Identifier</span> <span class="ot">-&gt;</span> <span class="dt">Compiler</span> [<span class="dt">String</span>])</a>
-<a class="sourceLine" id="cb4-2" title="2">              <span class="ot">-&gt;</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> (<span class="dt">Maybe</span> <span class="dt">FilePath</span>) <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Html</span>) </a>
-<a class="sourceLine" id="cb4-3" title="3">              <span class="ot">-&gt;</span> ([<span class="dt">Html</span>] <span class="ot">-&gt;</span> <span class="dt">Html</span>) </a>
-<a class="sourceLine" id="cb4-4" title="4">              <span class="ot">-&gt;</span> <span class="dt">String</span> </a>
-<a class="sourceLine" id="cb4-5" title="5">              <span class="ot">-&gt;</span> <span class="dt">Tags</span></a>
-<a class="sourceLine" id="cb4-6" title="6">              <span class="ot">-&gt;</span> <span class="dt">Context</span> a</a></code></pre></div>
-<p>After staring at the types a bit, and finally having the compiler cease its complaining I came up with this.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><a class="sourceLine" id="cb5-1" title="1"><span class="ot">tagsFieldWith ::</span> (<span class="dt">Identifier</span> <span class="ot">-&gt;</span> <span class="dt">Compiler</span> [<span class="dt">String</span>])            </a>
-<a class="sourceLine" id="cb5-2" title="2">              <span class="co">-- ^ Function to get the tags</span></a>
-<a class="sourceLine" id="cb5-3" title="3">              <span class="ot">-&gt;</span> (<span class="dt">String</span> <span class="ot">-&gt;</span> (<span class="dt">Maybe</span> <span class="dt">FilePath</span>) <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Html</span>)   </a>
-<a class="sourceLine" id="cb5-4" title="4">              <span class="co">-- ^ Function to generate the html of one tag</span></a>
-<a class="sourceLine" id="cb5-5" title="5">              <span class="ot">-&gt;</span> ([<span class="dt">Html</span>] <span class="ot">-&gt;</span> <span class="dt">Html</span>)                             </a>
-<a class="sourceLine" id="cb5-6" title="6">              <span class="co">-- ^ Function to concatenate tags to a larger html</span></a>
-<a class="sourceLine" id="cb5-7" title="7">              <span class="ot">-&gt;</span> <span class="dt">String</span>                                       </a>
-<a class="sourceLine" id="cb5-8" title="8">              <span class="co">-- ^ Name of the field </span></a>
-<a class="sourceLine" id="cb5-9" title="9">              <span class="ot">-&gt;</span> <span class="dt">Tags</span></a>
-<a class="sourceLine" id="cb5-10" title="10">              <span class="ot">-&gt;</span> <span class="dt">Context</span> a</a></code></pre></div>
-<p>So thankfully Haskell’s expressive type system comes to the rescue. But documentation is invaluable and you should expect to have some of your time wasted when it’s missing.</p>
-<p>All in all I found Hakyll to be a delightful tool to build my website and if your a Haskell enthusiast I’d recommend it whole heartedly.</p>]]></summary>
+    <title>Throne Of Might</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-ThroneOfMight.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-ThroneOfMight.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Fall from your throne, your dying seat of might,<br />
+and flee this castle and its stolen tract.<br />
+Be borne on the wind to ever higher height.</p>
+<p>Among hot sheets of silk lies our fight.<br />
+The aftermath of bloody Mars’ loving act.<br />
+Fall from your throne, your dying seat of might.</p>
+<p>May what sprung prove worthy above all right,<br />
+A bastard demi-god who’ll have the world sacked;<br />
+Be borne on the wind to ever higher height.</p>
+<p>Conquering each other’s fears in the sacred rite.<br />
+White stone beaten soft, beautifully cracked.<br />
+Fall from your throne, your dying seat of might.</p>
+<p>Brave the violent seas and tumble by its smite,<br />
+Lick the warm salt, embrace your loving pact;<br />
+be borne on the wind to ever higher height.</p>
+<p>Fear a dove’s loving lie, its shroud of white.<br />
+Wash ashore, soaked in blisters, still intact.<br />
+Fall from your throne, your dying seat of might;<br />
+be borne on the wind to ever higher height.</p>]]></summary>
 </entry>
 <entry>
-    <title>The Crimson King</title>
-    <link href="http://frankhampusweslien.com/indexProjects.html" />
-    <id>http://frankhampusweslien.com/indexProjects.html</id>
-    <published>2019-04-28T00:00:00Z</published>
-    <updated>2019-04-28T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>The Crimson King is a chapbook containing 12 poems. <!--more--></p>]]></summary>
+    <title>The Grand Ball</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-TheGrandBall.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-TheGrandBall.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>A full moon knocked on heaven’s door,<br />
+where a slender body boiled in water,<br />
+pulled to be spread on the marble floor,<br />
+fair skinned, earth’s most cherished daughter.<br />
+His eyes were blank, there was nothing but white.<br />
+A lump hot steaming mess fixed in agony,<br />
+one of the great-great souls brought back to sight,<br />
+a half-hearted retort to life’s supposed monogamy.</p>
+<p>“One of those days, just one of those days”<br />
+as foreign carriages approached the castle<br />
+where colored dots and swarms of gray<br />
+spilled out to view their conquered vassal.<br />
+They were greeted by a royal smile,<br />
+but favored instead the crimson red,<br />
+muttering for the miracle child,<br />
+exclaiming, “where—where is it?”</p>
+<p>Bathed in salt as if formed in ocean,<br />
+on top a shell to be draped by Spring,<br />
+the eternal lover’s favorite motion<br />
+with copper hair curled just like the wind.<br />
+The theater was laid in silverlight,<br />
+and a purple haze embraced the crowd,<br />
+roaring at the hint of a shadow of a sign.<br />
+The rich mood dampened as the wind began to howl.</p>
+<p>A stir in the clouds — an acid rain<br />
+a giant’s fist’s shattering sound<br />
+— a pinch of pain — trembling in awe<br />
+edged to the brim — boiling in rage<br />
+that’s when she threw himself on stage.</p>
+<p>It’s here! It lives, it moves us!<br />
+It behooves us! To take it where it groves us!<br />
+My pencil, pen and rockstar muse…<br />
+So obtuse, it fades — (barely used)</p>
+<p>Do not ring my door; this is not my home.<br />
+All parties must part their ways,<br />
+and I drink my crimson red alone</p>]]></summary>
 </entry>
 <entry>
-    <title>This website</title>
-    <link href="http://frankhampusweslien.com/indexProjects.html" />
-    <id>http://frankhampusweslien.com/indexProjects.html</id>
-    <published>2019-04-21T00:00:00Z</published>
-    <updated>2019-04-21T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>This site was built using Hakyll, a haskell static site generator, and is my own personal website where I write blog posts and show of things that interests me. You’ll find a link to the public github repo down bellow. Feel free to use it in any way you see fit.</p>
-<p>p.s. A cheap way to host your own site is by using github pages. You can read more <a href="">here</a>. <!--more--></p>]]></summary>
+    <title>The Castle</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-TheCastle.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-TheCastle.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>The spell was broken, the castle about to fall<br />
+under the sun’s thousand-year-old pressure<br />
+on the crimson cloaks to tear down its walls<br />
+and leave the king with his only treasure.<br />
+To catch him naked and then undress him,<br />
+stuttering his answers to their every whim.</p>
+<p>The first to fall was the gaudy chandelier,<br />
+a centerpiece that stole too much attention,<br />
+a display of wealth to detract from the austere<br />
+condition that its shadow would never mention.<br />
+And as his brilliant candles hit the floor,<br />
+it cracked so deep its shadow lept from the wall.</p>
+<p>He knew that future men would one day say<br />
+that the crack was where it all began<br />
+and never hail the sun that gave away<br />
+its rays to shine on the burgeoning mountain<br />
+built from the rubble of this abandoned castle,<br />
+solid, with no halls to hide in.</p>
+<p>Do you think of the dark side of the moon?<br />
+Or the light that never kisses a body?<br />
+Believing the two immortals know of bliss<br />
+where all pain is shared with one another?<br />
+Fear not, however close we are miles apart,<br />
+two cosmonauts who just happened to cross paths.</p>]]></summary>
 </entry>
 <entry>
-    <title>Weasel</title>
-    <link href="http://frankhampusweslien.com/indexProjects.html" />
-    <id>http://frankhampusweslien.com/indexProjects.html</id>
-    <published>2018-08-04T00:00:00Z</published>
-    <updated>2018-08-04T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>Weasel is a command line tool to analyse poetry/rap. It will, when finished, be able to tag what words in a text rhyme with one another, and in what way they do. Supporting all forms of phonetic word play, from slant rhymes to perfect rhymes, beautifully visualized as well as supporting multiple formats including JSON. <!--more--></p>]]></summary>
+    <title>Ode to a Princess</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-OdetoaPrincess.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-OdetoaPrincess.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Princess, from which spring did you sprung?<br />
+Yesteryear, like a flood down rolling mountains,<br />
+or tomorrow bursting from a soaking tongue.<br />
+You, the most oozing of youthful fountains,<br />
+the prized picture in my crystal ball.<br />
+Favorite niece, sweet child of mine,<br />
+my youth, my home, my love, my crown!<br />
+Stranger, a mist that twirls and twines,<br />
+a comfortable fog who you dare not call<br />
+a cloud of mind to the wonder of it all.<br />
+Beloved subject, one day I’ll turn you down!</p>
+<p>For I am nostalgic for the days of yore,<br />
+the days when you weren’t fixed in form.<br />
+In our breath, our thought, but wasn’t sure,<br />
+but a distant haze, a buzzing swarm.<br />
+Who came and laid the greens in a fiery show;<br />
+fireflies — millions upon millions more<br />
+flickering under the sun and its mistress<br />
+kissing — the land blushing, shocked sore —<br />
+with the red cloaks singing even though<br />
+their desire is mired in the golden glow<br />
+of hellfire, hellfire, heaven’s light, and hellfire.</p>
+<p>Brave knight, you can not save what burned to ash;<br />
+the fierce flames send shivers down your spine,<br />
+a tingle, a sensation so subtle until it clash<br />
+and wreaks havoc under the guise of “I feel fine”.<br />
+The raging emptiness you hold inside,<br />
+will it seep into a new idea, a brilliant phrase?<br />
+Set things straight that didn’t need to be aligned.<br />
+A curiosity exploring a warrior’s heart, a lunar phase,<br />
+the white colossus of the sky that pulls the tide,<br />
+in and out, day and night, the sun’s destined bride.<br />
+To think that the great eight once were nine.</p>]]></summary>
 </entry>
 <entry>
-    <title>Höstblad</title>
-    <link href="http://frankhampusweslien.com/content/writing/poetry/2018-03-06-H%C3%B6stblad.html" />
-    <id>http://frankhampusweslien.com/content/writing/poetry/2018-03-06-H%C3%B6stblad.html</id>
-    <published>2018-03-06T00:00:00Z</published>
-    <updated>2018-03-06T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>Är inte höstens blad de allra vackrast?<br />
-Ett dramatiskt slut på en mättad grönska,<br />
-en kort tids färg, ett sista rassel,<br />
-tills varje blad somnat under evig tystnad.<br />
-Vad gömmer sig där bakom de tunna liven?<br />
-Vad håller allting fast när vinden viner?<br />
-Att så späda ting vägrar tyngas ner,<br />
-tills de rycks i en av höstens pustar,<br />
-å aldrig syns nå’ mer.</p>]]></summary>
+    <title>Little Light</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-LittleLight.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-LittleLight.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Fickle, fickle, little light,<br />
+how I beg you to guide my sight.<br />
+In darkness lurks evil things,<br />
+the hungry ends of blushing kings.</p>
+<p>Fickle, fickle, little light,<br />
+how I beg you to guide my sight.<br />
+When my king is on the run,<br />
+lost in darkness, lost in fun,<br />
+then you bargain for my soul.<br />
+Fickle, fickle, I am told.</p>
+<p>Fickle, fickle, little light,<br />
+How I beg you to guide my sight.</p>]]></summary>
 </entry>
 <entry>
-    <title>Birds of sorrow</title>
-    <link href="http://frankhampusweslien.com/content/writing/poetry/2018-03-06-Birds-of-sorrow.html" />
-    <id>http://frankhampusweslien.com/content/writing/poetry/2018-03-06-Birds-of-sorrow.html</id>
-    <published>2018-03-06T00:00:00Z</published>
-    <updated>2018-03-06T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>As early dawn spreads her palm and folly takes its grasp,<br />
-Heed her call and take my arm for sorrow will not pass.<br />
-The heart will beat in steady streams of tearful memories.<br />
-How blissful nights of innocence turn to haunting dreams.<br />
-Every sight and every pain we grieve but dare not paint;<br />
-So nigh and so sly is the truth we dare not face.<br />
-Instead we’ll hide in between the wings of liberty,<br />
-And among its feathers find our peace in blissful misery.</p>]]></summary>
+    <title>Lady Fair</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-LadyFair.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-LadyFair.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Kindle my spirit, spirit of a dove,<br />
+the rock in rock ‘n’ roll love;<br />
+fair lady, lady fair,<br />
+who’s wicked love turned me sane,<br />
+to give such a gift so carelessly away!</p>
+<p>Set a flame, flames above the tops<br />
+of church bells and wedding props;<br />
+lovely lady, lady love,<br />
+the virgin mistress who drinks my crimson.<br />
+Oh! how love turns what simply isn’t.</p>
+<p>Pulling my strings, stringing me along<br />
+an eternal tour through the land of wrong;<br />
+prized lady, lady prizes,<br />
+taken at dusk to be returned by dawn,<br />
+if I could only keep you beyond the morn’!</p>]]></summary>
 </entry>
 <entry>
-    <title>S-Class</title>
-    <link href="http://frankhampusweslien.com/content/writing/poetry/2018-02-01-S-Class.html" />
-    <id>http://frankhampusweslien.com/content/writing/poetry/2018-02-01-S-Class.html</id>
-    <published>2018-02-01T00:00:00Z</published>
-    <updated>2018-02-01T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>He who squared the circle,<br />
-legend among his peers.<br />
-The retrofitted tale,<br />
-of how a man outgrew his fears.<br />
-Carrying the weight of future,<br />
-haunted by its ghost.<br />
-Will this S-class hero<br />
-ever walk the immortal’s soil?</p>]]></summary>
+    <title>I wish I could just die; I wish I was alive</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-IWhishICouldJustDieIWishIWasAlive.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-IWhishICouldJustDieIWishIWasAlive.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>With ribbons in their mouths, the sky as their floor,<br />
+that shifts and moves in see-through pinks and blues.<br />
+The wonders of cosmos soon lost by the shore<br />
+of oblivion, stronger than any other brew,<br />
+longer lasting, the most mellow of the hues.<br />
+As colored dots and swarms of grey arrive,<br />
+I greet them with jokes while showing off the view.<br />
+I wish I could just die; I wish I was alive.</p>
+<p>Later, thinking about the doomsday-four,<br />
+the quartet to orchestrate the coup<br />
+on human life with all its joy and chore,<br />
+and sing it out on a bittersweet adieu!<br />
+That twists one’s heart as if it caught the flu.<br />
+Like that stray comment that hit me in the side,<br />
+and poured me on the rocks starving for advice.<br />
+I wish I could just die; I wish I was alive.</p>
+<p>Don’t you hear the cosmic dancers rave and play?<br />
+The legends bombard every inch of floor.<br />
+Can’t you feel the shock on every single day<br />
+as they tap their feet chanting: “Nevermore!”<br />
+Don’t you feel it slip — déjà vu, déjà vu —<br />
+I write a rave review, a four out of five,<br />
+and forget I ever uttered death’s sweet woo:<br />
+I wish I could just die; I wish I was alive.</p>
+<p>But then that eerie feeling strikes and undo<br />
+all worldly joys and treats that give us drive,<br />
+and for a moment only otherworldly do:<br />
+I wish I could just die; I wish I was alive.</p>]]></summary>
 </entry>
 <entry>
-    <title>Purple Dreams</title>
-    <link href="http://frankhampusweslien.com/content/writing/poetry/2018-01-22-Purple-Dreams.html" />
-    <id>http://frankhampusweslien.com/content/writing/poetry/2018-01-22-Purple-Dreams.html</id>
-    <published>2018-01-22T00:00:00Z</published>
-    <updated>2018-01-22T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>On beaches of ivory, washed by the purple sea,<br />
-In dreamy translucence, waving the last ship set free.<br />
-Oh how birds sing and the wind whistles,<br />
-And how far-off ships gleam like alien crystals.<br />
-The mad passions ebb - and flow, raging,<br />
-sacred is the dawn still awaiting.</p>]]></summary>
+    <title>I could not find the faults in my shapeless form</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-ICouldNotFindTheFaultsOfMyShaplessForm.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-ICouldNotFindTheFaultsOfMyShaplessForm.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>I could not find the faults in my shapeless form,<br />
+nor could I keep the sun and moon from kissing;<br />
+eternal figures never shy to perform,<br />
+while I drift not knowing what is missing.<br />
+The Crimson King is laughing, “Oh, I’m yours!<br />
+a portrait missing all that should be known,<br />
+instead you rippled from the weight of war,<br />
+and let mystique led you to be alone.<br />
+See? We’ve been speaking with one tongue,<br />
+both be filling empty buckets full<br />
+to feel them overflow, the spring be sprung<br />
+to warmth, to prince to princess, to have it pull<br />
+you back into a simple twist of fate” —<br />
+lacking breath I’d swallowed my own bait.</p>]]></summary>
+</entry>
+<entry>
+    <title>How could it fall into your hands rosy maid?</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-HowCouldIFallIntoYourHandsRosyMaid.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-HowCouldIFallIntoYourHandsRosyMaid.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>How could it fall into your hands rosy maid?<br />
+The snows of winter now in pouring spring.<br />
+The Crimson King, who mourns on feathers laid,<br />
+say, “Love across the lake… must art this bring?<br />
+My canvas — fair — insight for all to bear;<br />
+my world of ice, the beauty of winter’s gloom,<br />
+now face the rising sun to sweat, to tear;<br />
+its beauty lay revealed in bleeding bloom.”<br />
+But let it bleed, let it cry, let the white dove die;<br />
+you gnawing wraiths drink its blood<br />
+the wisping winds whip its love<br />
+fault in form but form is fault</p>
+<p>Have autumn decay the way it was meant,<br />
+while love remains our sweetest budding scent.</p>]]></summary>
+</entry>
+<entry>
+    <title>All Along the Interlude</title>
+    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-AllAlongTheInterlude.html" />
+    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-AllAlongTheInterlude.html</id>
+    <published>2019-05-04T00:00:00Z</published>
+    <updated>2019-05-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Through mist, the rider came damp in heavy clothes.<br />
+“Is this the way?”, he asked,<br />
+for he wasn’t sure.<br />
+“Depends,” said the gentleman.<br />
+“Of course,” the charlatan.<br />
+“Never,” spoke the crow.<br />
+They all died in laughter, the prelude<br />
+to the tale all along the interlude.</p>
+<p>He mounted his bike that bleak morning<br />
+when wind scuffled the leaves<br />
+and rode the trees.<br />
+When the levee breaks we’ll have no place.<br />
+Can you hear the caw over wind and wave,<br />
+awakening their deepest, most inner rage:<br />
+crying floods, a burning temper. How rude —<br />
+to flush us down all along the interlude.</p>
+<p>The alleys crawled with sickening thoughts<br />
+passing them by under flickering lights.<br />
+“Thanks for tonight,”<br />
+said as their hands unlocked<br />
+and their (final?) eclipse was broken off.<br />
+The spectacle — caught in the wrong view,<br />
+by one who watch, one who pursue:<br />
+eternal figures all along the interlude.</p>
+<p>The past will change, blow by blow,<br />
+until there is no more shelter from the storm;<br />
+Where people come and go<br />
+talking about comics and games for adults,<br />
+the horrors of children’s toys.<br />
+Letting the crow sing over wind and wave,<br />
+while watchmen keep their view<br />
+on the borders all along the interlude.</p>
+<p>Is this his thrill? The beg, the moan.<br />
+“The night doesn’t need to end here.”<br />
+Hesitations unknown.<br />
+And their glowing black was pulled together,<br />
+by a night that seemed to last forever;<br />
+A spectacle that sure looked like a crime<br />
+from a distant watch in a tilted mood,<br />
+like another forced entry all along the interlude.</p>
+<p>Smoke curled around them. A demon? A wit?<br />
+No, a hypocrite refusing to play tricks.<br />
+For he was war,<br />
+madness in a suit. Throwing himself at headlines,<br />
+cashing in on past renown, bigger and better<br />
+then any other star committing crimes,<br />
+and speaks the truth — the right-wing renewed;<br />
+“think of the children” all along the interlude.</p>
+<p>The gentleman was the third seal that broke<br />
+as he swooned and dined with mad men,<br />
+lucky strikes with golden pens.<br />
+“Friend, there is a lot to be gained!”<br />
+Radiating blissful intent,<br />
+leaving a fat tip and calling it a day,<br />
+while one peddles poison to the prude and crude<br />
+chanting “I broke no law!” all along the interlude.</p>
+<p>— The Sirens’ Tune —<br />
+The masked man strikes again!<br />
+— Two scared to death<br />
+Sunday morning a vigilante saved the day,<br />
+or so he thought, before he was chased away<br />
+by a man-made hurricane, a distraction for the crow.<br />
+Please call the police if you have any clue<br />
+why war rides all along the interlude.</p>
+<p>The fourth had been there biding his time,<br />
+day by day, the routine of your life.<br />
+“A most trusted advisor.”<br />
+Who you must call at once.<br />
+For you find yourself amidst the worst of floods,<br />
+and fear needs no more than a spark to turn hot,<br />
+so you watch as the Empire subdue:<br />
+“You rebel scum!” all along the interlude.</p>
+<p>“My office, now!” demanded the sweaty man,<br />
+the puppet in control whose flick of a switch<br />
+could burn a world.<br />
+While a watchman pulled off the greatest heist<br />
+by staging Armageddon for the ultimate prize:<br />
+to pass the day of our extinction.<br />
+So let us raise a glass of crimson to our fortitude<br />
+against the waves all along the interlude.</p>
+<p>Bobcats growled just like the wind,<br />
+while a dying fender cried out its sin.<br />
+“Yes”, they swore,<br />
+the gentleman, charlatan, and the crow.<br />
+For no more chaos to be brought,<br />
+that they leave this world, its perfect storm,<br />
+while the forth was left to reap his due<br />
+to judge each soul all along the interlude.</p>]]></summary>
 </entry>
 
 </feed>
