@@ -27,7 +27,7 @@ publish:
 	@ git checkout development  # Make sure we are on the correct branch
 	@ stack exec -- blog clean  # Make a clean build
 	@ stack exec -- blog build
-	@ git fetch -all 
+	@ git fetch --all 
 	@ git checkout master 
 	# we use rsync to auto remove deleted files
 	@ rsync -a --filter='P _site/'      \
