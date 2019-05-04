@@ -8,18 +8,21 @@ My personal blog built with hakyll.
 - [ x ] Add sitemap
 - [ x ] Fix index page
 - [ x ] dynamic css
-- [  ] deploy command
-- [  ] refactor css
+- [ x ] deploy command
+- [ x ] refactor css
 - [ x ] fix project page
 - [ x ] fix About
 - [ x ] Hakyll reviwed
-- [  ] The Crimson King
+- [ x ] The Crimson King
 - [ x ] Proper art image alt tags
 - [ x ] More Art
 - [ x ] Site logo
 - [ x ] favicon.ico???
 - [  ] put all haskell code in one file
-- [  ] fix links to art in tags + sitemap
+- [  ] fix links to art in tags
+- [  ] add more poems
+- [  ] fix categories
+- [  ] more whitespace between posts
 
 ## Instructions
 
