@@ -23,6 +23,7 @@ My personal blog built with hakyll.
 - [  ] add more poems
 - [  ] fix categories
 - [  ] more whitespace between posts
+- [  ] reverse underline on tags
 
 ## Instructions
 
