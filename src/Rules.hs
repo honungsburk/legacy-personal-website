@@ -86,9 +86,9 @@ templateRules = match "templates/*" $ compile templateCompiler
 
 -- | This rule copy static files that doesn't need to be generated
 staticCopyRule :: Rules ()
-staticCopyRule = match (fromList ["robots.txt"]) $ do
+staticCopyRule = match (fromList ["robots.txt", "CNAME"]) $ do
     route idRoute
-    compile $ getResourceBody >>= relativizeUrls
+    compile copyFileCompiler
 
 --------------------------------------------------------------------------------
 
