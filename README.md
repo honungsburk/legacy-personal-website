@@ -22,8 +22,9 @@ My personal blog built with hakyll.
 - [  ] fix links to art in tags
 - [  ] add more poems
 - [  ] fix categories
-- [  ] more whitespace between posts
-- [  ] reverse underline on tags
+- [  ] fix when many tags on mobile
+- [ x ] more whitespace between posts
+- [ x ] reverse underline on tags
 
 ## Instructions
 

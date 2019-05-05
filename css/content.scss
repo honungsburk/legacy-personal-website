@@ -48,8 +48,9 @@
     margin: 0.1em 0.2em;
     background: $siteBlack;
     color: $siteBackground;
+    text-decoration: none;
     &:hover {
-        text-decoration: none;
+        text-decoration: underline;
     }
 }
 
