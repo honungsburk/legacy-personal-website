@@ -7,7 +7,7 @@ build:
 	@stack exec -- blog build
 
 watch: build
-	@stack exec -- blog watch --port 4000
+	@stack exec -- blog watch --port 8000
 
 blog: clean
 	@stack exec -- blog build

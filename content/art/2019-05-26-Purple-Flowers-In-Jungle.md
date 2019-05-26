@@ -1,0 +1,8 @@
+---
+image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e83a41f0-1127-4c89-9388-cca19c024bde/dd7ry2d-ace73610-f1e6-45ad-a106-6ebfab8e4386.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2U4M2E0MWYwLTExMjctNGM4OS05Mzg4LWNjYTE5YzAyNGJkZVwvZGQ3cnkyZC1hY2U3MzYxMC1mMWU2LTQ1YWQtYTEwNi02ZWJmYWI4ZTQzODYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.jDdkHFxH0QGdMpcmFWfe_Zbfz6Iw8_xkNfBUMPDvkP4"
+alt: "Purple flowers in jungle"
+tags: 
+  - landscape
+  - jungle
+  - "digital art"
+---
