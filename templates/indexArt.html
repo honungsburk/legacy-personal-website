@@ -11,16 +11,26 @@
 </div>
 <div class="pagination center-container">
     $if(previousPageNum)$
-        <a href="$previousPageUrl$">previous</a>
-    $elif(lastPageUrl)$
-        <a href="$lastPageUrl$">previous</a>
+        <a href="$previousPageUrl$">
+          <i class="art-page-arrow fas fa-arrow-left"></i>
+        </a>
+    $else$
+      $if(lastPageUrl)$
+        <a href="$lastPageUrl$">
+          <i class="art-page-arrow fas fa-arrow-left"></i>
+        </a>
+      $endif$
     $endif$
-    &mdash;
     page $currentPageNum$ of $numPages$
-    &mdash;
     $if(nextPageNum)$
-        <a href="$nextPageUrl$">next</a>
-    $elif(firstPageUrl)$
-        <a href="$firstPageUrl$">next</a>
+    <a href="$nextPageUrl$"> 
+      <i class="art-page-arrow fas fa-arrow-right"></i>
+    </a>
+    $else$
+      $if(firstPageUrl)$
+        <a href="$firstPageUrl$">
+          <i class="art-page-arrow fas fa-arrow-right"></i>
+        </a>
+      $endif$
     $endif$
 </div>
