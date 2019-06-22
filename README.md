@@ -29,3 +29,6 @@ My personal blog built with hakyll.
 ## Instructions
 
 When updating a post add the $updated$ (date) metadata field to have the sitemap properly generated.
+
+
+## Commands
