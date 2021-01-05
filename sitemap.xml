@@ -168,4 +168,18 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>http://frankhampusweslien.com/content/art/4.html</loc>
+    <lastmod></lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>http://frankhampusweslien.com/content/art/5.html</loc>
+    <lastmod></lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
