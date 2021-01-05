@@ -20,7 +20,7 @@ My personal blog built with hakyll.
 - [ x ] favicon.ico???
 - [  ] put all haskell code in one file
 - [  ] fix links to art in tags
-- [  ] add more poems
+- [ x  ] add more poems
 - [  ] fix categories
 - [  ] fix when many tags on mobile
 - [ x ] more whitespace between posts
