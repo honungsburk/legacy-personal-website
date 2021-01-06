@@ -11,9 +11,10 @@ siteCtx = mconcat
     [ constField "email" "frankhampusweslien@gmail.com"
     , constField "githubUser" "honungsburk"
     , constField "gitlabUser" "HampusWeslien"
+    , constField "instagramUser" "frankhampusweslien"
     , constField "siteTitle" "FrankHampusWeslien"
     , constField "root" "http://frankhampusweslien.com"
-    , constField "description" "FrankHampusWeslien: code and poetry. No more, no less."
+    , constField "description" "FrankHampusWeslien: code, paintings and pontifications. No more, no less."
     , constField "stylesheet" "/css/basicStyling.css"
     , faviconsField
     ]
