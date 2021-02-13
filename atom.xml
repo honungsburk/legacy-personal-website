@@ -8,8 +8,20 @@
         <name>Frank Hampus Weslien</name>
         <email>frankhampusweslien@gmail.com</email>
     </author>
-    <updated>2021-01-29T00:00:00Z</updated>
+    <updated>2021-02-13T00:00:00Z</updated>
     <entry>
+    <title>Momentum</title>
+    <link href="http://frankhampusweslien.com/content/blog/2021-02-13-Momentum.html" />
+    <id>http://frankhampusweslien.com/content/blog/2021-02-13-Momentum.html</id>
+    <published>2021-02-13T00:00:00Z</published>
+    <updated>2021-02-13T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>When you do something that takes a lot of effort one has to have momentum. Because when you loose it, it is really hard to get the ball back rolling again. I’ve numerous dead git repos where I tinkered but never got a working prototype loosing all interest when progress grinded to a halt. And this is true for more things then just code. I’ve tried writing short stories and posed the exact same problem: I just couldn’t finnish them before getting bored.</p>
+<!--more-->
+<p>That is why you have to have momentum. It is only protection against boredom. A few years ago I started painting and since then I’ve managed to get much better then I ever thought I would. Painting portraits was a long time goal of mine and it happened way sooner then I ever thought. And what made it happen was that I had a rigid schedule, and wasn’t discouraged when I made <a href="./2021-01-06-Progress.html">bad paintings</a>. Without which I’d never seen this level of progress.</p>
+<p>But currently I’ve been struggling - not with the painting, that is trucking along - but a web app I’ve been hacking on. Three months ago I decided that writing an app that makes it easier for my dad to manage the sport equipments for the local handball club would be a good idea. Initially I heavily underestimated the amount of work that I needed do. The goal was to have a (shitty) working prototype by the start of february, which I of course blew right past. At this point I’d be happy if I can launch it sometime in march. And I’ve really felt down when problems that felt like I should be able to bang out in a day or two takes a week in reality. I have been loosing the momentum fast. Thinking if this really was such a good idea after all. So I decided to write this post and play a trick on myself by making a promise: I’m only allowed to stop working on it after my first release. If it sucks. If I don’t want to work on it any more that is fine. I’d never have to touch it again.</p>
+<p>The trick is that the momentum you pick up from releasing something will pull you with it. And it won’t let go.</p>]]></summary>
+</entry>
+<entry>
     <title>Life and Death</title>
     <link href="http://frankhampusweslien.com/content/blog/2021-01-29-Life-and-Death.html" />
     <id>http://frankhampusweslien.com/content/blog/2021-01-29-Life-and-Death.html</id>
@@ -217,28 +229,6 @@ then you bargain for my soul.<br />
 Fickle, fickle, I am told.</p>
 <p>Fickle, fickle, little light,<br />
 How I beg you to guide my sight.</p>]]></summary>
-</entry>
-<entry>
-    <title>Lady Fair</title>
-    <link href="http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-LadyFair.html" />
-    <id>http://frankhampusweslien.com/content/writing/poetry/theCrimsonKing/2019-05-04-LadyFair.html</id>
-    <published>2019-05-04T00:00:00Z</published>
-    <updated>2019-05-04T00:00:00Z</updated>
-    <summary type="html"><![CDATA[<p>Kindle my spirit, spirit of a dove,<br />
-the rock in rock ‘n’ roll love;<br />
-fair lady, lady fair,<br />
-who’s wicked love turned me sane,<br />
-to give such a gift so carelessly away!</p>
-<p>Set a flame, flames above the tops<br />
-of church bells and wedding props;<br />
-lovely lady, lady love,<br />
-the virgin mistress who drinks my crimson.<br />
-Oh! how love turns what simply isn’t.</p>
-<p>Pulling my strings, stringing me along<br />
-an eternal tour through the land of wrong;<br />
-prized lady, lady prizes,<br />
-taken at dusk to be returned by dawn,<br />
-if I could only keep you beyond the morn’!</p>]]></summary>
 </entry>
 
 </feed>
